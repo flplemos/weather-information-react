@@ -2,7 +2,6 @@ import './WeatherInformations5Days.css';
 
 function WeatherInformations5Days({ weather5Days }) {
   
-
   let dailyForecast = {};
 
   for (let forecast of weather5Days.list) {
@@ -11,6 +10,7 @@ function WeatherInformations5Days({ weather5Days }) {
     if(!dailyForecast[date]){
       dailyForecast[date] = forecast
     }
+    
   }
 
   const nextFiveDays = Object.values(dailyForecast).slice(1,6)
@@ -32,13 +32,14 @@ function WeatherInformations5Days({ weather5Days }) {
             <p className='forecast-day'>{convertDate(forecast)}</p>
             <img src={`http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`} alt="Ícone do clima" />
             <p className='forecast-description'>{forecast.weather[0].description}</p>
-            <p>{Math.round(forecast.main.temp_min)}°C min / {Math.round(forecast.main.temp_max)}°C máx</p>
+            <p>{Math.round(forecast.main.temp_min)}°C<br></br>Sensação de {Math.round(forecast.main.feels_like)}°C</p>
         </div>
     
       ))}
       </div>
     </div>
   );
+ 
 }
 
 export default WeatherInformations5Days;
